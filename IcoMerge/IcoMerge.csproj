@@ -6,7 +6,12 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>img\iconMerge.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="img\iconMerge.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="JTForks.MiscUtil" Version="1.285.0" />

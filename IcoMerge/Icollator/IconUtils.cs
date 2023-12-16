@@ -21,7 +21,6 @@ namespace IcollatorForever
         //public static void WriteToStream(List<IIconEntry> list, Stream s)
         public static void WriteToStream(List<IIconEntry> list, Stream s)
         {
-            Debug.WriteLine("Write to stream");
             // Reserved (always 0)
             s.Write(GetBytes(0, 2), 0, 2);
             // Type (always 1 for an icon)

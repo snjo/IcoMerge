@@ -40,21 +40,16 @@ namespace IcollatorForever
         /// </summary>
         public Icon(string filename, Stream s)
         {
-            Debug.WriteLine("Icon 1");
             _stream = s;
             _reader = new EndianBinaryReader(EndianBitConverter.Little, s);
-            Debug.WriteLine("Icon 2");
             _reader.ReadInt16(); // reserved field
             _reader.ReadInt16(); // type field
             int count = _reader.ReadInt16();
             EntryDescriptions = new IconEntryDescription[count];
-            Debug.WriteLine("Icon 3");
             _entries = new IIconEntry[count];
             List<IIconEntry> list = new List<IIconEntry>();
-            Debug.WriteLine("Icon 4, count: " + count);
             for (int i = 0; i < count; i++)
             {
-                Debug.WriteLine("Icon 4a");
                 int width = s.ReadByte();
                 int height = s.ReadByte();
                 int colorCount = s.ReadByte();
@@ -63,7 +58,6 @@ namespace IcollatorForever
                 int bitCount = _reader.ReadInt16();
                 int sizeInBytes = _reader.ReadInt32();
                 int fileOffset = _reader.ReadInt32();
-                Debug.WriteLine("Icon 4b");
                 if (width == 0)
                 {
                     width = 256;
@@ -77,7 +71,6 @@ namespace IcollatorForever
                     sizeInBytes, fileOffset, filename, i);
                 EntryDescriptions[i] = description;
             }
-            Debug.WriteLine("Icon 5");
         }
 
         /// <summary>

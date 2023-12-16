@@ -7,8 +7,8 @@ namespace IcoMerge;
 public partial class Form1 : Form
 {
 
-    string[] icoFiles = { @"img\icon16.ico", @"img\icon32.ico", @"img\icon64.ico", @"img\icon256.ico" };
-    string[] pngFiles = { @"img\icon16.png", @"img\icon32.png", @"img\icon64.png", @"img\icon256.png" };
+    string[] icoFiles = new string[0];
+    string[] pngFiles = new string[0];
     string[] imageFiles = new string[0];
 
     List<IIconEntry> entries = new();
@@ -51,26 +51,20 @@ public partial class Form1 : Form
                 Debug.WriteLine($"Can't find file {file}");
             }
         }
-
-        Debug.WriteLine("Entries: " + entries.Count);
     }
 
     private void SaveIcon(string filePath)
     {
-        Debug.WriteLine("SaveIcon 1");
         if (entries.Count > 0)
         {
-            Debug.WriteLine("SaveIcon 2");
             using (MemoryStream stream = new MemoryStream())
             {
-                Debug.WriteLine("SaveIcon 3");
                 using (FileStream fs = new FileStream(filePath, FileMode.Create))
                 {
-                    Debug.WriteLine("SaveIcon 4");
                     IconUtils.WriteToStream(entries, stream);
-                    Debug.WriteLine("SaveIcon 5");
                     stream.WriteTo(fs);
-                    Debug.WriteLine("SaveIcon 6");
+                    Debug.WriteLine("Saving icon to file: " +  filePath);
+
                 }
             }
         }
@@ -78,21 +72,14 @@ public partial class Form1 : Form
 
     private bool TryAddIcoFile(string filename, byte[] bytes)
     {
-        Debug.WriteLine("TryAddIcoFile 1");
         try
         {
-            Debug.WriteLine("TryAddIcoFile 2");
             using (MemoryStream stream = new MemoryStream(bytes))
-            {
-                Debug.WriteLine("TryAddIcoFile 3");
+            { 
                 IcollatorForever.Icon icon = new IcollatorForever.Icon(filename, stream);
-                Debug.WriteLine("TryAddIcoFile 4, ");
-                entries.AddRange(icon.Entries);
-                Debug.WriteLine("TryAddIcoFile 5");
+                entries.AddRange(icon.Entries); 
                 entries = entries.OrderBy(e => e.Description).ToList();
-                Debug.WriteLine("TryAddIcoFile 6");
             }
-            Debug.WriteLine("Added ico file");
             return true;
         }
         catch (Exception e)
@@ -105,17 +92,12 @@ public partial class Form1 : Form
 
     public bool AddFile(string filename, byte[] fileBytes)
     {
-        Debug.WriteLine("AddFile 1");
         string extension = System.IO.Path.GetExtension(filename).ToLower();
-
         bool success = false;
 
         if (extension == ".ico")
         {
-            Debug.WriteLine("AddFile 2");
-            success = TryAddIcoFile(filename, fileBytes);
-            Debug.WriteLine("AddFile 3");
-            Debug.WriteLine("Add ico, success: " + success);
+            success = TryAddIcoFile(filename, fileBytes);            
         }
         else
         {
@@ -138,7 +120,6 @@ public partial class Form1 : Form
         if (result == DialogResult.OK)
         {
             icoFiles = imageFiles;
-            Debug.WriteLine("Entries: " + entries.Count);
             LoadIcoImages(icoFiles);
             SaveIcon(saveFileDialog1.FileName);
         }

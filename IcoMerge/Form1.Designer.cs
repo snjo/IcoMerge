@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             buttonMergeToIco = new Button();
             buttonConvertToIco = new Button();
             openFileDialog1 = new OpenFileDialog();
@@ -59,7 +60,7 @@
             // openFileDialog1
             // 
             openFileDialog1.DefaultExt = "ico";
-            openFileDialog1.Filter = "Icon|*.ico|All files|*.*";
+            openFileDialog1.Filter = "Images|*.ico;*.png|Icon|*.ico|PNG|*.png|All files|*.*";
             openFileDialog1.Multiselect = true;
             // 
             // button1
@@ -95,6 +96,7 @@
             Controls.Add(button1);
             Controls.Add(buttonConvertToIco);
             Controls.Add(buttonMergeToIco);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);

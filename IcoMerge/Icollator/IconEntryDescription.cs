@@ -2,9 +2,6 @@
 // See license.txt in the IcollatorForever distribution or repository for the
 // full text of the license.
 
-using System;
-using System.Text;
-
 namespace IcollatorForever
 {
     public class IconEntryDescription : IEquatable<IconEntryDescription>, IComparable<IconEntryDescription>
@@ -57,10 +54,10 @@ namespace IcollatorForever
             BitCount = bitCount;
         }
 
-        public override bool Equals(object obj)
-        {
-            return Equals(obj as IconEntryDescription);
-        }
+        //public override bool Equals(object obj)
+        //{
+        //    return Equals(obj as IconEntryDescription);
+        //}
 
         public bool Equals(IconEntryDescription other)
         {
@@ -124,25 +121,25 @@ namespace IcollatorForever
             }
         }
 
-        public string ToKey()
-        {
-            StringBuilder sb = new StringBuilder(SourceFileName);
-            sb.Append("[");
-            sb.Append(SourceIndex);
-            sb.Append("]@");
-            sb.Append(Width);
-            sb.Append("x");
-            sb.Append(Height);
-            sb.Append(",");
-            sb.Append(BitCount);
-            sb.Append("bit,");
-            sb.Append(ColorCount);
-            sb.Append("colors,");
-            sb.Append(SizeInBytes);
-            sb.Append("bytes,");
-            sb.Append("fileOffset=");
-            sb.Append(FileOffset);
-            return sb.ToString();
-        }
+        //public string ToKey()
+        //{
+        //    StringBuilder sb = new StringBuilder(SourceFileName);
+        //    sb.Append("[");
+        //    sb.Append(SourceIndex);
+        //    sb.Append("]@");
+        //    sb.Append(Width);
+        //    sb.Append("x");
+        //    sb.Append(Height);
+        //    sb.Append(",");
+        //    sb.Append(BitCount);
+        //    sb.Append("bit,");
+        //    sb.Append(ColorCount);
+        //    sb.Append("colors,");
+        //    sb.Append(SizeInBytes);
+        //    sb.Append("bytes,");
+        //    sb.Append("fileOffset=");
+        //    sb.Append(FileOffset);
+        //    return sb.ToString();
+        //}
     }
 }

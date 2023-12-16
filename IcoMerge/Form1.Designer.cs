@@ -38,7 +38,7 @@
             // 
             // buttonMergeToIco
             // 
-            buttonMergeToIco.Location = new Point(107, 155);
+            buttonMergeToIco.Location = new Point(12, 155);
             buttonMergeToIco.Name = "buttonMergeToIco";
             buttonMergeToIco.Size = new Size(100, 47);
             buttonMergeToIco.TabIndex = 0;
@@ -48,8 +48,7 @@
             // 
             // buttonConvertToIco
             // 
-            buttonConvertToIco.Enabled = false;
-            buttonConvertToIco.Location = new Point(12, 155);
+            buttonConvertToIco.Location = new Point(303, 155);
             buttonConvertToIco.Name = "buttonConvertToIco";
             buttonConvertToIco.Size = new Size(89, 47);
             buttonConvertToIco.TabIndex = 1;
@@ -59,7 +58,8 @@
             // 
             // openFileDialog1
             // 
-            openFileDialog1.FileName = "openFileDialog1";
+            openFileDialog1.DefaultExt = "ico";
+            openFileDialog1.Filter = "Icon|*.ico|All files|*.*";
             openFileDialog1.Multiselect = true;
             // 
             // button1
@@ -80,6 +80,11 @@
             textBox1.ScrollBars = ScrollBars.Both;
             textBox1.Size = new Size(380, 108);
             textBox1.TabIndex = 3;
+            // 
+            // saveFileDialog1
+            // 
+            saveFileDialog1.DefaultExt = "ico";
+            saveFileDialog1.Filter = "Icon|*ico|All files|*.*";
             // 
             // Form1
             // 

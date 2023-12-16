@@ -2,7 +2,6 @@
 // See license.txt in the IcollatorForever distribution or repository for the
 // full text of the license.
 
-using System.IO;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 

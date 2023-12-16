@@ -2,11 +2,9 @@
 // See license.txt in the IcollatorForever distribution or repository for the
 // full text of the license.
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using MiscUtil.IO;
 using MiscUtil.Conversion;
+using MiscUtil.IO;
+using System.Diagnostics;
 
 namespace IcollatorForever
 {
@@ -42,17 +40,21 @@ namespace IcollatorForever
         /// </summary>
         public Icon(string filename, Stream s)
         {
+            Debug.WriteLine("Icon 1");
             _stream = s;
             _reader = new EndianBinaryReader(EndianBitConverter.Little, s);
-
+            Debug.WriteLine("Icon 2");
             _reader.ReadInt16(); // reserved field
             _reader.ReadInt16(); // type field
             int count = _reader.ReadInt16();
             EntryDescriptions = new IconEntryDescription[count];
+            Debug.WriteLine("Icon 3");
             _entries = new IIconEntry[count];
             List<IIconEntry> list = new List<IIconEntry>();
+            Debug.WriteLine("Icon 4, count: " + count);
             for (int i = 0; i < count; i++)
             {
+                Debug.WriteLine("Icon 4a");
                 int width = s.ReadByte();
                 int height = s.ReadByte();
                 int colorCount = s.ReadByte();
@@ -61,6 +63,7 @@ namespace IcollatorForever
                 int bitCount = _reader.ReadInt16();
                 int sizeInBytes = _reader.ReadInt32();
                 int fileOffset = _reader.ReadInt32();
+                Debug.WriteLine("Icon 4b");
                 if (width == 0)
                 {
                     width = 256;
@@ -74,6 +77,7 @@ namespace IcollatorForever
                     sizeInBytes, fileOffset, filename, i);
                 EntryDescriptions[i] = description;
             }
+            Debug.WriteLine("Icon 5");
         }
 
         /// <summary>
@@ -105,19 +109,19 @@ namespace IcollatorForever
         /// Gets an entry matching the specified description. The description should match
         /// one of the elements of EntryDescriptions.
         /// </summary>
-        public IIconEntry GetEntry(IconEntryDescription description)
-        {
-            if (description == null)
-            {
-                return null;
-            }
-            int index = Array.IndexOf(EntryDescriptions, description);
-            if (index == -1)
-            {
-                return null;
-            }
-            return GetEntry(EntryDescriptions[index]);
-        }
+        //public IIconEntry? GetEntry(IconEntryDescription description)
+        //{
+        //    if (description == null)
+        //    {
+        //        return null;
+        //    }
+        //    int index = Array.IndexOf(EntryDescriptions, description);
+        //    if (index == -1)
+        //    {
+        //        return null;
+        //    }
+        //    return GetEntry(EntryDescriptions[index]);
+        //}
 
         public void Dispose()
         {

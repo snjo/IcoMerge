@@ -2,13 +2,10 @@
 // See license.txt in the IcollatorForever distribution or repository for the
 // full text of the license.
 
-using System;
-using System.IO;
-using MiscUtil.IO;
 using MiscUtil.Conversion;
+using MiscUtil.IO;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
-using Image = SixLabors.ImageSharp.Image;
 
 namespace IcollatorForever
 {
@@ -113,7 +110,7 @@ namespace IcollatorForever
             int totalBytesRead = 0;
             int bytesRead = 0;
             while ((bytesRead = stream.Read(data, totalBytesRead, data.Length - totalBytesRead)) > 0)
-                {
+            {
                 totalBytesRead += bytesRead;
             }
             SetData(data);
@@ -179,7 +176,7 @@ namespace IcollatorForever
 
             int xorByteCount = Description.Height * bitsInRow / 8;
             _startOfAndImage = HeaderSize + xorColorTableEntries * 4 + xorByteCount;
-            
+
             int bitsInAndRow = Description.Width;
             int andRemainder = bitsInAndRow % 32;
             if (andRemainder > 0)

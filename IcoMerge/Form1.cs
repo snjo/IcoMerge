@@ -1,14 +1,5 @@
-using System;
-using System.Collections;
-using System.Diagnostics;
-using System.Text;
 using IcollatorForever;
-using MiscUtil.Conversion;
-using MiscUtil.IO;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats.Png;
-using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp.Processing.Processors.Quantization;
+using System.Diagnostics;
 //using Image = SixLabors.ImageSharp.Image;
 
 namespace IcoMerge;
@@ -20,11 +11,8 @@ public partial class Form1 : Form
     string[] pngFiles = { @"img\icon16.png", @"img\icon32.png", @"img\icon64.png", @"img\icon256.png" };
     string[] imageFiles = new string[0];
 
-    #region variables
     List<IIconEntry> entries = new();
 
-
-    #endregion
     public Form1()
     {
         InitializeComponent();
@@ -37,15 +25,19 @@ public partial class Form1 : Form
             if (File.Exists(file))
             {
                 System.Drawing.Image img = System.Drawing.Image.FromFile(file);
-                string outFile = file + "_convert.ico";
-                img.Save(outFile, System.Drawing.Imaging.ImageFormat.Icon);
-                Debug.WriteLine(outFile);
+                int height = img.Height;
+                int width = img.Width;
+                img.Dispose();
+                string outFile = file + "_c.ico";
+                PngIconConverter.Convert(file, outFile, height);
             }
         }
     }
 
-    private void LoadImages(string[] files)
+
+    private void LoadIcoImages(string[] files)
     {
+        entries.Clear();
         foreach (string file in files)
         {
             if (File.Exists(file))
@@ -65,15 +57,20 @@ public partial class Form1 : Form
 
     private void SaveIcon(string filePath)
     {
+        Debug.WriteLine("SaveIcon 1");
         if (entries.Count > 0)
         {
+            Debug.WriteLine("SaveIcon 2");
             using (MemoryStream stream = new MemoryStream())
             {
-
+                Debug.WriteLine("SaveIcon 3");
                 using (FileStream fs = new FileStream(filePath, FileMode.Create))
                 {
+                    Debug.WriteLine("SaveIcon 4");
                     IconUtils.WriteToStream(entries, stream);
+                    Debug.WriteLine("SaveIcon 5");
                     stream.WriteTo(fs);
+                    Debug.WriteLine("SaveIcon 6");
                 }
             }
         }
@@ -81,13 +78,19 @@ public partial class Form1 : Form
 
     private bool TryAddIcoFile(string filename, byte[] bytes)
     {
+        Debug.WriteLine("TryAddIcoFile 1");
         try
         {
+            Debug.WriteLine("TryAddIcoFile 2");
             using (MemoryStream stream = new MemoryStream(bytes))
             {
+                Debug.WriteLine("TryAddIcoFile 3");
                 IcollatorForever.Icon icon = new IcollatorForever.Icon(filename, stream);
+                Debug.WriteLine("TryAddIcoFile 4, ");
                 entries.AddRange(icon.Entries);
+                Debug.WriteLine("TryAddIcoFile 5");
                 entries = entries.OrderBy(e => e.Description).ToList();
+                Debug.WriteLine("TryAddIcoFile 6");
             }
             Debug.WriteLine("Added ico file");
             return true;
@@ -102,15 +105,21 @@ public partial class Form1 : Form
 
     public bool AddFile(string filename, byte[] fileBytes)
     {
-
+        Debug.WriteLine("AddFile 1");
         string extension = System.IO.Path.GetExtension(filename).ToLower();
 
         bool success = false;
 
         if (extension == ".ico")
         {
+            Debug.WriteLine("AddFile 2");
             success = TryAddIcoFile(filename, fileBytes);
+            Debug.WriteLine("AddFile 3");
             Debug.WriteLine("Add ico, success: " + success);
+        }
+        else
+        {
+            Debug.WriteLine("File is in wrong format (not .ico): " + filename);
         }
 
         if (success)
@@ -130,9 +139,9 @@ public partial class Form1 : Form
         {
             icoFiles = imageFiles;
             Debug.WriteLine("Entries: " + entries.Count);
-            LoadImages(icoFiles);
+            LoadIcoImages(icoFiles);
             SaveIcon(saveFileDialog1.FileName);
-        } 
+        }
     }
 
     private void buttonConvertToIco_Click(object sender, EventArgs e)

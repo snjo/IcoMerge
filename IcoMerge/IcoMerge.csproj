@@ -6,11 +6,11 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>img\iconMerge.ico</ApplicationIcon>
+    <ApplicationIcon>img\iconMerge3.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="img\iconMerge.ico" />
+    <Content Include="img\iconMerge3.ico" />
   </ItemGroup>
 
   <ItemGroup>

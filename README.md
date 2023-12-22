@@ -2,7 +2,7 @@
 *by Andreas Aakvik Gogstad*  
 *2023*
 
-![image](img/screenshot.png)
+![image](screenshot.png)
 
 Converts multiple PNG files into a single multi-resolution ICO file
 

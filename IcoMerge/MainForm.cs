@@ -2,7 +2,7 @@ using System.Diagnostics;
 
 namespace IcoMerge;
 
-public partial class Form1 : Form
+public partial class MainForm : Form
 {
 
     string[] icoFiles = new string[0];
@@ -10,7 +10,7 @@ public partial class Form1 : Form
     string[] imageFiles = new string[0];
 
 
-    public Form1()
+    public MainForm()
     {
         InitializeComponent();
     }

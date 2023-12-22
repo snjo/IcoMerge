@@ -1,6 +1,6 @@
 ﻿namespace IcoMerge
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             buttonConvertToIco = new Button();
             openFileDialog1 = new OpenFileDialog();
             button1 = new Button();
@@ -124,7 +124,7 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // Form1
+            // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -137,8 +137,8 @@
             Controls.Add(button1);
             Controls.Add(buttonConvertToIco);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "Form1";
-            Text = "Form1";
+            Name = "MainForm";
+            Text = "IcoMerge";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -35,12 +35,22 @@ public partial class Form1 : Form
         if (result == DialogResult.OK)
         {
             imageFiles = openFileDialog1.FileNames;
-            Debug.WriteLine("Files selected: " + imageFiles.Length);
+            //Debug.WriteLine("Files selected: " + imageFiles.Length);
         }
         textBox1.Text = "";
         foreach (string filename in imageFiles)
         {
             textBox1.Text += Path.GetFileName(filename) + Environment.NewLine;
         }
+    }
+
+    private void buttonUnpackICO_Click(object sender, EventArgs e)
+    {
+        DialogResult result = folderBrowserDialog1.ShowDialog();
+        if (result == DialogResult.OK)
+        {
+            IconToBitmaps.LoadFiles(imageFiles[0], Path.Combine(folderBrowserDialog1.SelectedPath, "result"));//saveFileDialog1.FileName);
+        }
+        
     }
 }

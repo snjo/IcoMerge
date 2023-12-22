@@ -34,6 +34,8 @@
             button1 = new Button();
             textBox1 = new TextBox();
             saveFileDialog1 = new SaveFileDialog();
+            buttonUnpackICO = new Button();
+            folderBrowserDialog1 = new FolderBrowserDialog();
             SuspendLayout();
             // 
             // buttonConvertToIco
@@ -58,7 +60,7 @@
             button1.Name = "button1";
             button1.Size = new Size(112, 23);
             button1.TabIndex = 2;
-            button1.Text = "Select PNG files";
+            button1.Text = "Select source files";
             button1.UseVisualStyleBackColor = true;
             button1.Click += LoadFiles_Click;
             // 
@@ -77,11 +79,22 @@
             saveFileDialog1.DefaultExt = "ico";
             saveFileDialog1.Filter = "Icon|*ico|All files|*.*";
             // 
+            // buttonUnpackICO
+            // 
+            buttonUnpackICO.Location = new Point(130, 155);
+            buttonUnpackICO.Name = "buttonUnpackICO";
+            buttonUnpackICO.Size = new Size(103, 44);
+            buttonUnpackICO.TabIndex = 4;
+            buttonUnpackICO.Text = "Unpack ICO";
+            buttonUnpackICO.UseVisualStyleBackColor = true;
+            buttonUnpackICO.Click += buttonUnpackICO_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(254, 211);
+            Controls.Add(buttonUnpackICO);
             Controls.Add(textBox1);
             Controls.Add(button1);
             Controls.Add(buttonConvertToIco);
@@ -98,5 +111,7 @@
         private Button button1;
         private TextBox textBox1;
         private SaveFileDialog saveFileDialog1;
+        private Button buttonUnpackICO;
+        private FolderBrowserDialog folderBrowserDialog1;
     }
 }

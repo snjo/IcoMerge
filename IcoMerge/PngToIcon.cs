@@ -10,10 +10,10 @@ namespace IcoMerge
         /* png support in icon was introduced in Windows Vista */
         public static bool Convert(List<FileStream> inputStreams, Stream output_stream)//, bool keep_aspect_ratio = false)
         {
-            List<pngStream> inputBitmaps = new List<pngStream>();
+            List<PngStream> inputBitmaps = new List<PngStream>();
             foreach (Stream inputStream in inputStreams)
             {
-                inputBitmaps.Add(new pngStream((Bitmap)Bitmap.FromStream(inputStream)));
+                inputBitmaps.Add(new PngStream((Bitmap)Bitmap.FromStream(inputStream)));
             }
             
             if (inputBitmaps.Count > 0)
@@ -35,7 +35,7 @@ namespace IcoMerge
 
                     int fileOffset = 6 + (16 * count);
 
-                    foreach (pngStream inputStream in inputBitmaps)
+                    foreach (PngStream inputStream in inputBitmaps)
                     {
 
                         inputStream.new_bit = new Bitmap(inputStream.bitmap, new Size(inputStream.width, inputStream.height));
@@ -71,7 +71,7 @@ namespace IcoMerge
                         Debug.WriteLine($"PngToIcon, added image, w: {inputStream.width}, offset: {fileOffset}, size: {dataLength}");
                     }
 
-                    foreach (pngStream inputStream in inputBitmaps)
+                    foreach (PngStream inputStream in inputBitmaps)
                     {
                         // write image data
                         // png data must contain the whole png data file
@@ -114,20 +114,5 @@ namespace IcoMerge
 
             return result;
         }
-    }
-
-    public class pngStream(Bitmap bmp)
-    {
-        public Bitmap bitmap { get; } = bmp;
-        public int width
-        {
-            get { return bitmap.Width; }
-        }
-        public int height
-        {
-            get { return bitmap.Height; }
-        }
-        public Bitmap? new_bit;
-        public MemoryStream? mem_data;
     }
 }

@@ -53,7 +53,7 @@ public partial class Form1 : Form
             foreach (string file in imageFiles)
             {
                 string filePrefix = Path.GetFileNameWithoutExtension(file);
-                IconToBitmaps.LoadFiles(file, folderBrowserDialog1.SelectedPath, filePrefix, "png", radioButton2.Checked);//saveFileDialog1.FileName);
+                IconToBitmaps.Convert(file, folderBrowserDialog1.SelectedPath, filePrefix, "png", radioButton2.Checked);//saveFileDialog1.FileName);
             }
         }
 

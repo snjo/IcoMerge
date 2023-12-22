@@ -38,6 +38,7 @@
             folderBrowserDialog1 = new FolderBrowserDialog();
             radioButton1 = new RadioButton();
             radioButton2 = new RadioButton();
+            button2 = new Button();
             SuspendLayout();
             // 
             // buttonConvertToIco
@@ -113,11 +114,22 @@
             radioButton2.Text = "Unpack PNG-formatted icon file";
             radioButton2.UseVisualStyleBackColor = true;
             // 
+            // button2
+            // 
+            button2.Location = new Point(162, 274);
+            button2.Name = "button2";
+            button2.Size = new Size(79, 44);
+            button2.TabIndex = 7;
+            button2.Text = "Open last used folder";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(253, 330);
+            Controls.Add(button2);
             Controls.Add(radioButton2);
             Controls.Add(radioButton1);
             Controls.Add(buttonUnpackICO);
@@ -141,5 +153,6 @@
         private FolderBrowserDialog folderBrowserDialog1;
         private RadioButton radioButton1;
         private RadioButton radioButton2;
+        private Button button2;
     }
 }

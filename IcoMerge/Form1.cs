@@ -46,7 +46,7 @@ public partial class Form1 : Form
 
     private void buttonUnpackICO_Click(object sender, EventArgs e)
     {
-        
+
         DialogResult result = folderBrowserDialog1.ShowDialog();
         if (result == DialogResult.OK)
         {
@@ -57,5 +57,29 @@ public partial class Form1 : Form
             }
         }
 
+    }
+
+    private void button2_Click(object sender, EventArgs e)
+    {
+        BrowseFolderInExplorer(folderBrowserDialog1.SelectedPath);
+    }
+
+    public string BrowseFolderInExplorer(string folder)
+    {
+        if (folder.Length < 1)
+        {
+            folder = ".";
+        }
+        if (Directory.Exists(folder))
+        {
+            Debug.WriteLine("Opening folder: " + folder);
+            Process.Start(new ProcessStartInfo() { FileName = folder, UseShellExecute = true });
+        }
+        else
+        {
+            Debug.WriteLine("Can't open folder " + folder);
+        }
+
+        return folder;
     }
 }

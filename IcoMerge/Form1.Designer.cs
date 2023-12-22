@@ -36,15 +36,17 @@
             saveFileDialog1 = new SaveFileDialog();
             buttonUnpackICO = new Button();
             folderBrowserDialog1 = new FolderBrowserDialog();
+            radioButton1 = new RadioButton();
+            radioButton2 = new RadioButton();
             SuspendLayout();
             // 
             // buttonConvertToIco
             // 
             buttonConvertToIco.Location = new Point(12, 155);
             buttonConvertToIco.Name = "buttonConvertToIco";
-            buttonConvertToIco.Size = new Size(112, 47);
+            buttonConvertToIco.Size = new Size(144, 47);
             buttonConvertToIco.TabIndex = 1;
-            buttonConvertToIco.Text = "Save to ICO file";
+            buttonConvertToIco.Text = "Save PNGs to ICO file";
             buttonConvertToIco.UseVisualStyleBackColor = true;
             buttonConvertToIco.Click += buttonConvertToIco_Click;
             // 
@@ -81,19 +83,43 @@
             // 
             // buttonUnpackICO
             // 
-            buttonUnpackICO.Location = new Point(130, 155);
+            buttonUnpackICO.Location = new Point(12, 274);
             buttonUnpackICO.Name = "buttonUnpackICO";
-            buttonUnpackICO.Size = new Size(103, 44);
+            buttonUnpackICO.Size = new Size(144, 44);
             buttonUnpackICO.TabIndex = 4;
             buttonUnpackICO.Text = "Unpack ICO";
             buttonUnpackICO.UseVisualStyleBackColor = true;
             buttonUnpackICO.Click += buttonUnpackICO_Click;
             // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Checked = true;
+            radioButton1.Location = new Point(12, 219);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(191, 19);
+            radioButton1.TabIndex = 5;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "Unpack ICO-formatted icon file";
+            radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(12, 244);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(195, 19);
+            radioButton2.TabIndex = 6;
+            radioButton2.Text = "Unpack PNG-formatted icon file";
+            radioButton2.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(254, 211);
+            ClientSize = new Size(253, 330);
+            Controls.Add(radioButton2);
+            Controls.Add(radioButton1);
             Controls.Add(buttonUnpackICO);
             Controls.Add(textBox1);
             Controls.Add(button1);
@@ -113,5 +139,7 @@
         private SaveFileDialog saveFileDialog1;
         private Button buttonUnpackICO;
         private FolderBrowserDialog folderBrowserDialog1;
+        private RadioButton radioButton1;
+        private RadioButton radioButton2;
     }
 }

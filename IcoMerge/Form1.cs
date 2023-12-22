@@ -46,11 +46,16 @@ public partial class Form1 : Form
 
     private void buttonUnpackICO_Click(object sender, EventArgs e)
     {
+        
         DialogResult result = folderBrowserDialog1.ShowDialog();
         if (result == DialogResult.OK)
         {
-            IconToBitmaps.LoadFiles(imageFiles[0], Path.Combine(folderBrowserDialog1.SelectedPath, "result"));//saveFileDialog1.FileName);
+            foreach (string file in imageFiles)
+            {
+                string filePrefix = Path.GetFileNameWithoutExtension(file);
+                IconToBitmaps.LoadFiles(file, folderBrowserDialog1.SelectedPath, filePrefix, "png", radioButton2.Checked);//saveFileDialog1.FileName);
+            }
         }
-        
+
     }
 }

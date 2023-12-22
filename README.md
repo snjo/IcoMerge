@@ -1,4 +1,4 @@
-# IcoMerge
+# ![image](IcoMerge/img/icon48.png) IcoMerge
 *by Andreas Aakvik Gogstad*  
 *2023*
 
